@@ -1,0 +1,22 @@
+{{- $count := .Values.appNumber | default 50 | toString | atoi }}
+{{- range $i, $ := until $count }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: managed-argoapp-{{ add $i 1 }}
+  namespace: argocd-ns
+  finalizers:
+    - argoproj.io/finalizer
+spec:
+  destination:
+    namespace: managed-ns-{{ add $i 1 }}
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: .
+    repoURL: 'https://github.com/iraftoul/simple-test.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+{{- end }}

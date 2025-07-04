@@ -1,0 +1,4 @@
+apiVersion: v2
+name: argo-chart
+description: Helm chart for ArgoCD managed namespaces
+version: 0.1.0

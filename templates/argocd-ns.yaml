@@ -1,0 +1,15 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: argocd-ns
+  labels:
+    pod-security.kubernetes.io/enforce-version: v1.29
+    pod-security.kubernetes.io/warn: restricted
+    openshift.io/cluster-monitoring: 'true'
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/warn-version: latest
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/audit-version: latest
+spec:
+  finalizers:
+    - kubernetes
